@@ -6,7 +6,7 @@ describe('Subtraction testing', () => {
       });
 
       test('26 - 1 = 15', () => {
-        expect(subtract(26, 1)).toBe(15);
+        expect(subtract(26, 1)).toBe(25);
       });
 
       test('110 - 1 = 109', () => {
