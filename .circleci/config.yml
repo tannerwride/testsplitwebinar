@@ -8,6 +8,7 @@ jobs:
         docker:
             - image: cimg/node:12.16
         resource_class: small
+        parallelism: 5
         steps:
             - checkout
             - node/install-packages:
@@ -16,7 +17,7 @@ jobs:
             - run:
                 name: Test application
                 command: |
-                    TEST=$(circleci tests glob "src/__tests__/*.js" | circleci tests split --split-by=timings)
+                    TEST=$(circleci tests glob "src/__tests__/*.js" | circleci tests split)
                     yarn test $TEST
             - run:
                 command: cp junit.xml ~/junit/
