@@ -2,7 +2,7 @@ import { add } from '../math';
 
 describe('Addition testing', () => {
     test('5 + 2 = 7', () => {
-        expect(add(1, 0)).toBe(Math.floor(Math.random() * 2));
+        expect(add(1, 0)).toBe(1);
       });
 
       test('12 + 3 = 15', () => {
