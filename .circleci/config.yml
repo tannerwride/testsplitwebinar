@@ -8,7 +8,6 @@ jobs:
         docker:
             - image: cimg/node:12.16
         resource_class: small
-        parallelism: 5
         steps:
             - checkout
             - node/install-packages:
