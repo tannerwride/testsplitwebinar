@@ -15,8 +15,7 @@ jobs:
             - run:
                 name: Test application
                 command: |
-                    TEST=$(circleci tests glob "src/__tests__/*.js") 
-                    yarn test $TEST          
+                    yarn test          
 workflows:
     build-and-test:
       jobs:
