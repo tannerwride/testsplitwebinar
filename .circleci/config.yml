@@ -32,19 +32,6 @@ jobs:
     parallelism: 10
     steps:
       - checkout
-      - restore_cache:
-          keys:
-              # when lock file changes, use increasingly general patterns to restore cache
-              - node-cache-v1-{{ .Branch }}-
-              - node-cache-v1-
-      - run:
-          name: Fetch dependencies
-          command: npm ci
-      - save_cache:
-          paths:
-              - ~/.npm
-              - ~/.cache
-          key: node-cache-v1-{{ .Branch }}-
       - run:
           name: Test application 
           command: |
@@ -59,19 +46,6 @@ jobs:
       - image: cimg/node:14.0.0
     steps:
       - checkout
-      - restore_cache:
-          keys:
-              # when lock file changes, use increasingly general patterns to restore cache
-              - node-cache-v1-{{ .Branch }}-
-              - node-cache-v1-
-      - run:
-          name: Fetch dependencies
-          command: npm ci
-      - save_cache:
-          paths:
-              - ~/.npm
-              - ~/.cache
-          key: node-cache-v1-{{ .Branch }}-
       - run:
           name: Snapshot Tests 
           command: |
