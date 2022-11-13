@@ -23,9 +23,9 @@ jobs:
   build:
     executor: node
     steps:
-      - checkout
-      - node/install-packages:
-          override-ci-command: CYPRESS_INSTALL_BINARY=0 npm ci
+        - checkout
+        - node/install-packages:
+            pkg-manager: yarn
   unit_tests:
     docker:
       - image: cimg/node:14.0.0
@@ -35,7 +35,6 @@ jobs:
       - restore_cache:
           keys:
               # when lock file changes, use increasingly general patterns to restore cache
-              - node-cache-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
               - node-cache-v1-{{ .Branch }}-
               - node-cache-v1-
       - run:
@@ -45,7 +44,7 @@ jobs:
           paths:
               - ~/.npm
               - ~/.cache
-          key: node-cache-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: node-cache-v1-{{ .Branch }}-
       - run:
           name: Test application 
           command: |
@@ -63,7 +62,6 @@ jobs:
       - restore_cache:
           keys:
               # when lock file changes, use increasingly general patterns to restore cache
-              - node-cache-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
               - node-cache-v1-{{ .Branch }}-
               - node-cache-v1-
       - run:
@@ -73,7 +71,7 @@ jobs:
           paths:
               - ~/.npm
               - ~/.cache
-          key: node-cache-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: node-cache-v1-{{ .Branch }}-
       - run:
           name: Snapshot Tests 
           command: |
